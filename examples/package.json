@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "openapi": "openapi-typescript schema.yaml --output schema.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^6.7.0"
+  }
+}

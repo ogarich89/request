@@ -1,15 +1,20 @@
 {
-  "name": "request",
+  "name": "@ogarich89/request",
+  "description": "Typed library for HTTP requests",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:ogarich89/request.git",
   "author": "ogarich89 <r.ogarkov@3commas.io>",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.5.1"
   },
+  "scripts": {
+    "prepublish": "yarn build",
+    "build": "tsc --declaration"
+  },
   "devDependencies": {
-    "openapi-typescript": "^6.7.0",
     "typescript": "^5.2.2"
   }
 }

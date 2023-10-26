@@ -1,0 +1,258 @@
+---
+openapi: 3.0.1
+info:
+  title: API schema
+  description: Mock API schema for request library.
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000
+    description: Development server
+paths:
+  "/users":
+    get:
+      summary: Get users
+      parameters:
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: per_page
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        200:
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - first_name
+                    - last_name
+                    - username
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    first_name:
+                      type: string
+                      example: Roman
+                    last_name:
+                      type: string
+                      example: Ogarkov
+                    username:
+                      type: string
+                      example: ogarich89
+                    role:
+                      type: integer
+                      example: 0
+                    subscribed:
+                      type: boolean
+                      example: false
+                    created_at:
+                      type: string
+                      example: '2023-02-28T06:09:01.499Z'
+                    updated_at:
+                      type: string
+                      example: '2023-02-28T06:09:01.499Z'
+                    user_id:
+                      type: integer
+                      example: 18
+    post:
+      summary: Create user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+                - username
+              properties:
+                first_name:
+                  type: string
+                  example: Roman
+                last_name:
+                  type: string
+                  example: Ogarkov
+                username:
+                  type: string
+                  example: ogarich89
+      responses:
+        200:
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - first_name
+                  - last_name
+                  - username
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  first_name:
+                    type: string
+                    example: Roman
+                  last_name:
+                    type: string
+                    example: Ogarkov
+                  username:
+                    type: string
+                    example: ogarich89
+                  role:
+                    type: integer
+                    example: 0
+                  subscribed:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2023-02-28T06:09:01.499Z'
+                  updated_at:
+                    type: string
+                    example: '2023-02-28T06:09:01.499Z'
+                  user_id:
+                    type: integer
+                    example: 18
+  "/users/{id}":
+    get:
+      summary: Get user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          example: '2'
+      responses:
+        200:
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - first_name
+                  - last_name
+                  - username
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  first_name:
+                    type: string
+                    example: Roman
+                  last_name:
+                    type: string
+                    example: Ogarkov
+                  username:
+                    type: string
+                    example: ogarich89
+                  role:
+                    type: integer
+                    example: 0
+                  subscribed:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2023-02-28T06:09:01.499Z'
+                  updated_at:
+                    type: string
+                    example: '2023-02-28T06:09:01.499Z'
+                  user_id:
+                    type: integer
+                    example: 18
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+    put:
+      summary: Update user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          example: '7'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - first_name
+                - last_name
+                - username
+              properties:
+                first_name:
+                  type: string
+                  example: Roman
+                last_name:
+                  type: string
+                  example: Ogarkov
+                username:
+                  type: string
+                  example: ogarich89
+      responses:
+        200:
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: integer
+                    example: 7
+    delete:
+      summary: Delete user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          example: '2'
+      responses:
+        200:
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: integer
+                    example: 7
+        403:
+          description: Forbidden
